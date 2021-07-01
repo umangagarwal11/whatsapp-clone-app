@@ -6,12 +6,15 @@
 import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import * as React from 'react';
-import { ColorSchemeName } from 'react-native';
+import { ColorSchemeName, View } from 'react-native';
 
 import NotFoundScreen from '../screens/NotFoundScreen';
 import { RootStackParamList } from '../types';
-import BottomTabNavigator from './BottomTabNavigator';
+import MainTabNavigator from './MainTabNavigator';
 import LinkingConfiguration from './LinkingConfiguration';
+
+import colors from '../constants/Colors';
+import { Octicons } from '@expo/vector-icons';
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
   return (
@@ -29,8 +32,29 @@ const Stack = createStackNavigator<RootStackParamList>();
 
 function RootNavigator() {
   return (
-    <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="Root" component={BottomTabNavigator} />
+    <Stack.Navigator screenOptions={{ 
+        headerStyle: {
+          backgroundColor: colors.light.tint,
+          shadowOpacity: 0,
+          elevation: 0
+        },
+        headerTintColor: colors.light.background,
+        headerTitleAlign: 'left',
+      }}>
+      <Stack.Screen 
+          name="Root" 
+          component={MainTabNavigator} 
+          options = {{
+            title: 'Realtime-ChatApp',
+            headerRight: () => (
+              <View style = {{
+                marginRight: 20
+              }}>
+                <Octicons name='search' size={22} color={colors.light.background} />
+              </View>
+            ) 
+          }}
+      />
       <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
     </Stack.Navigator>
   );
