@@ -6,6 +6,11 @@
 export type RootStackParamList = {
   Root: undefined;
   NotFound: undefined;
+  ChatRoom: undefined;
+};
+
+export type AuthStackParamList = {
+  Root: undefined;
 };
 
 export type MainTabParamList = {
@@ -19,6 +24,9 @@ export type TabOneParamList = {
   TabOneScreen: undefined;
 };
 
-export type TabTwoParamList = {
-  TabTwoScreen: undefined;
+export type ChatParamList = {
+  ChatScreen: undefined;
+};
+export type NewChatParamList = {
+  NewChatScreen: undefined;
 };

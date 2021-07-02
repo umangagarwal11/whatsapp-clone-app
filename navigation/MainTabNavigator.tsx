@@ -10,11 +10,12 @@ import * as React from 'react';
 
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
-import TabOneScreen from '../screens/TabOneScreen';
-import TabTwoScreen from '../screens/TabTwoScreen';
-import { MainTabParamList, TabOneParamList, TabTwoParamList } from '../types';
+import ChatScreen from '../screens/ChatScreen';
+import NewChatScreen from '../screens/NewChatScreen';
+import { MainTabParamList, TabOneParamList, ChatParamList, NewChatParamList } from '../types';
 
 import { Fontisto } from '@expo/vector-icons';
+import NotFoundScreen from '../screens/NotFoundScreen';
 
 const MainTab = createMaterialTopTabNavigator<MainTabParamList>();
 
@@ -48,11 +49,11 @@ export default function MainTabNavigator() {
       />
       <MainTab.Screen
         name="Chats"
-        component={TabTwoNavigator}
+        component={ChatNavigator}
       />
       <MainTab.Screen
         name="NewChat"
-        component={TabOneNavigator}
+        component={NewChatNavigator}
       />
       <MainTab.Screen
         name="Calls"
@@ -77,23 +78,37 @@ function TabOneNavigator() {
     <TabOneStack.Navigator>
       <TabOneStack.Screen
         name="TabOneScreen"
-        component={TabOneScreen}
-        options={{ headerTitle: 'Tab One Title' }}
+        component={NotFoundScreen}
+        options={{ headerShown: false }}
       />
     </TabOneStack.Navigator>
   );
 }
 
-const TabTwoStack = createStackNavigator<TabTwoParamList>();
+const ChatStack = createStackNavigator<ChatParamList>();
 
-function TabTwoNavigator() {
+function ChatNavigator() {
   return (
-    <TabTwoStack.Navigator>
-      <TabTwoStack.Screen
-        name="TabTwoScreen"
-        component={TabTwoScreen}
-        options={{ headerTitle: 'Tab Two Title' }}
+    <ChatStack.Navigator>
+      <ChatStack.Screen
+        name="ChatScreen"
+        component={ChatScreen}
+        options={{ headerShown: false }}
       />
-    </TabTwoStack.Navigator>
+    </ChatStack.Navigator>
+  );
+}
+
+const NewChatStack = createStackNavigator<NewChatParamList>();
+
+function NewChatNavigator() {
+  return (
+    <NewChatStack.Navigator>
+      <NewChatStack.Screen
+        name="NewChatScreen"
+        component={NewChatScreen}
+        options={{ headerShown: false }}
+      />
+    </NewChatStack.Navigator>
   );
 }
